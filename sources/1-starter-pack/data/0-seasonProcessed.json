@@ -1,0 +1,11 @@
+[
+  { "id": 1, "season_year": "2018", "season_name": "Spring" },
+  { "id": 2, "season_year": "2018", "season_name": "Summer" },
+  { "id": 3, "season_year": "2018", "season_name": "Autumn" },
+  { "id": 4, "season_year": "2018", "season_name": "Winter" },
+  { "id": 5, "season_year": "2019", "season_name": "Spring" },
+  { "id": 6, "season_year": "2019", "season_name": "Summer" },
+  { "id": 7, "season_year": "2019", "season_name": "Autumn" },
+  { "id": 8, "season_year": "2019", "season_name": "Winter" },
+  { "id": 9, "season_year": "2020", "season_name": "Spring" }
+]
