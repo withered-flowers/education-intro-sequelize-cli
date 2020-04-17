@@ -114,7 +114,7 @@ Untuk pembelajaran mengenai `sequelize`, kita akan menggunakan starter-pack dari
 kode sederhana berbasis express mengenai Anime list yang didapat dari API `jikan.moe` 
 yang sudah dimodifikasi.
 
-Starter-pack ini dapat dilihat di [sini](https://github.com/withered-flowers/)
+Starter-pack ini dapat dilihat di [sini](https://github.com/withered-flowers/education-intro-sequelize-cli/tree/master/sources/1-starter-pack)
 
 ## How to use Sequelize
 INSTALASI
