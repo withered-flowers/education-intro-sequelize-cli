@@ -37,11 +37,13 @@ fs.readFile('file-a.json', 'utf8', function readHandler(err, data1) {
 });
 ```
 
+(Kode di atas juga dapat dilihat di [sini](https://github.com/withered-flowers/education-intro-sequelize-cli/tree/master/sources/1-promise-recap))
+
 Dari kode di atas, dapat dilihat bahwa bila semakin banyak urutan callback yang 
 dibutuhkan, maka kodingan kita akan menjorok ke dalam sangat banyak sehingga makin
 `prone-to-error` bukan?
 
-Oleh karena itu, pada pengembangan nodejs sendiri, kita bisa memanfaatkan `Promise`
+Oleh karena itu, pada pengembangan NodeJS sendiri, kita bisa memanfaatkan `Promise`
 untuk mengatasi hal tersebut.
 
 (Untuk konsep promise tidak akan dibahas lebih mendalam karena sudah dibahas pada 
@@ -325,6 +327,19 @@ class Controller {
 
 module.exports = Controller;
 ```
+
+Dari kode yang ada di atas, dapat diketahui bahwa dengan menggunakan `sequelize` kita 
+tidak perlu membuat model sendiri lagi karena sudah di-generate oleh `sequelize`.
+
+Hal ini dapat memudahkan kita dalam mengembangkan aplikasi web yang menggunakan database 
+karena tidak perlu repot repot membuat raw-query nya lagi karena sudah di-handle oleh 
+`sequelize`.
+
+Namun hal ini juga bukan berarti tidak ada kelemahannya. Karena ORM ini dibuat oleh 
+orang lain, kita harus mengikuti aturan atau dokumentasi yang sudah dibuat oleh si 
+developer itu sendiri.
+
+Selamat belajar !
 
 ## Reference
 * [ORM What is - Bitsrc.io](#https://blog.bitsrc.io/what-is-an-orm-and-why-you-should-use-it-b2b6f75f5e2a)
