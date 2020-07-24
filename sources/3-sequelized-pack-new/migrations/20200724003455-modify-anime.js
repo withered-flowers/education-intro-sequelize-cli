@@ -11,7 +11,7 @@ module.exports = {
     return queryInterface.addColumn('Animes', 'season_id', Sequelize.STRING, {});
   },
 
-  down: async (queryInterface, Sequelize) => {
+  down: (queryInterface, Sequelize) => {
     /**
      * Add reverting commands here.
      *
