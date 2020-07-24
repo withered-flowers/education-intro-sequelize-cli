@@ -183,6 +183,37 @@ npx sequelize-cli model:generate --name Season --attributes season_name:string,s
 npx sequelize-cli model:generate --name Anime --attributes title:string,url:string,episodes:string
 ```
 
+### Revision 1
+Pada saat menggunakan `model:generate` ini, `sequelize-cli` akan membuat file pada folder 
+`migrations` (untuk pembuatan tabel dalam database yang digunakan), dan `models` (untuk pembuatan
+representasi data yang digunakan pada aplikasi yang akan dibuat), dengan menggunakan 
+`async / await`, namun kita juga bisa merubahnya menjadi `promise` based dengan cara menghapus
+seluruh kata `async` pada file **migration** yang dibentuk dan mengganti kata `await` menjadi
+`return`
+
+Contoh kode dapat dilihat di bawah ini:
+```javascript
+'use strict';
+module.exports = {
+  // Kata async ini dihapus
+  // up: async (queryInterface, Sequelize) => {
+  up: (queryInterface, Sequelize) => {
+  // Kata await diganti return
+    // await queryInterface.createTable('Seasons', {
+      return queryInterface.createTable('Seasons', {
+      ...
+    });
+  },
+  // Kata async ini dihapus
+  // down: async (queryInterface, Sequelize) => {
+  down:  (queryInterface, Sequelize) => {
+  // Kata await diganti return
+    // await queryInterface.dropTable('Seasons');
+    return queryInterface.dropTable('Seasons');
+  }
+};
+```
+
 ### Syntax 2
 ```
 # Buat migration file baru untuk menambahkan kolom
@@ -208,16 +239,22 @@ down: (queryInterface, Sequelize) => {
 // Pada file /models/anime.js
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Anime = sequelize.define('Anime', {
+  class Anime extends Model {
+    
+    static associate(models) {
+      
+    }
+  };
+  Anime.init({
     title: DataTypes.STRING,
     url: DataTypes.STRING,
     episodes: DataTypes.STRING,
-    // Tambahkan ini
-    season_id: DataTypes.INTEGER
-  }, {});
-  Anime.associate = function(models) {
-    // associations can be defined here
-  };
+    //Tambahkan ini
+    season_id: DataTypes.INTEGER,
+  }, {
+    sequelize,
+    modelName: 'Anime',
+  });
   return Anime;
 };
 ...
@@ -244,7 +281,8 @@ npx sequelize-cli seed:generate --name seed-anime
 ```javascript
 // File [timestamp]-seed-season.js
 'use strict';
-let data = require('../data/0-seasonProcessed.json');
+const fs = require('fs');
+let data = JSON.parse(fs.readFileSync('./data/0-seasonProcessed.json'));
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
@@ -265,7 +303,8 @@ module.exports = {
 
 // File [timestamp]-seed-anime.js
 'use strict';
-let data = require('../data/0-animeProcessed.json');
+const fs = require('fs');
+let data = JSON.parse(fs.readFileSync('./data/0-animeProcessed.json'));
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
